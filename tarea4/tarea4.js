@@ -3,25 +3,33 @@ console.log($listaNumeros);
 
 let arrayNumeros = [];
 for (let i=0; i<$listaNumeros.length; i++){
-    arrayNumeros.push(Number($listaNumeros[i].textContent))
+    let num = Number($listaNumeros[i].textContent);
+
+    if (validarNumero (num)){
+        arrayNumeros.push (num);
+    }
 }
 
-document.querySelector("#calcular-promedio").onclick = function (){
+document.querySelector("#calcular-promedio").onclick = function (event){
+    event.preventDefault();
+
     document.querySelector("#promedio").textContent = `El promedio es ${promedio(arrayNumeros)}`;
-    return false;
 }
 
-document.querySelector("#calcular-menor-valor").onclick = function (){
+document.querySelector("#calcular-menor-valor").onclick = function (event){
+    event.preventDefault(event);
+
     document.querySelector("#menor-valor").textContent = `El numero más pequeño es ${menorNumero(arrayNumeros)}`;
-    return false;
 }
 
-document.querySelector("#calcular-mayor-valor").onclick = function (){
+document.querySelector("#calcular-mayor-valor").onclick = function (event){
+    event.preventDefault(event);
     document.querySelector("#mayor-valor").textContent = `El numero más grande es ${mayorNumero(arrayNumeros)}`;
     return false;
 }
 
-document.querySelector("#calcular-mas-repetido").onclick = function (){
+document.querySelector("#calcular-mas-repetido").onclick = function (event){
+    event.preventDefault(event);
     document.querySelector("#valor-mas-repetido").textContent = `El numero más frecuente es ${masRepetido(arrayNumeros)}`;
     return false;
 }
@@ -78,3 +86,10 @@ function masRepetido(ar){
     return masRepetido;
 }
 
+function validarNumero (num){
+    if (isNaN (num) || num === undefined || num === null){
+        console.log ("Un numero de la lista presenta un valor invalido");
+        return false;
+    }
+    return true;
+}
